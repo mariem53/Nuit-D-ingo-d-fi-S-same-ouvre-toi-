@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - MECI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./register-style.css">
+</head>
+<body>
+    <!-- Éléments flottants en arrière-plan -->
+    <div class="floating-gaulois">🪓</div>
+    <div class="floating-gaulois">🛡️</div>
+    <div class="floating-gaulois">⚔️</div>
+    <div class="floating-gaulois">🍗</div>
+    
+    <!-- Lucioles numériques -->
+    <div class="fireflies" id="firefliesContainer"></div>
+    
+    <!-- Page d'inscription principale -->
+    <div class="portal-container" id="signupPage">
+        <!-- Porte du village -->
+        <div class="village-gate">
+            <h1 class="gate-title">REJOINS LA RÉSISTANCE !</h1>
+            <p class="gate-subtitle">Inscris-toi au Village Numérique Résistant</p>
+        </div>
+        
+        <!-- Forteresse d'inscription -->
+        <div class="signup-fortress">
+            <!-- Mur gaulois -->
+            <div class="gaulish-wall">
+                <div class="wall-shield">
+                    <i class="fas fa-user-plus shield-icon"></i>
+                </div>
+                <div class="wall-message">
+                    <p>"Par Toutatis ! Rejoins-nous pour combattre les géants du numérique avec des logiciels libres et du matériel reconditionné !"</p>
+                </div>
+            </div>
+            
+            <!-- Parchemin d'inscription -->
+            <div class="scroll-form">
+                <h2 class="form-title">Parchemin d'Enrôlement</h2>
+                
+                <form id="gaulishSignupForm">
+                    <!-- Informations personnelles -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <span class="label-icon">👤</span>
+                            Ton Nom de Gaulois
+                        </label>
+                        <input type="text" class="form-input" id="username" 
+                               placeholder="Comment veux-tu qu'on t'appelle ?" required>
+                        <div class="input-hint">Ex: Astérix, Obélix, Panoramix Numérix...</div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <span class="label-icon">📨</span>
+                            Message des Pigeons Voyageurs
+                        </label>
+                        <input type="email" class="form-input" id="email" 
+                               placeholder="Où envoyer les messages secrets ?" required>
+                        <div class="input-hint">Ton adresse électronique</div>
+                    </div>
+                    
+                    <!-- Mot de passe -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <span class="label-icon">🔐</span>
+                            Formule Magique Secrète
+                        </label>
+                        <input type="password" class="form-input" id="password" 
+                               placeholder="Crée une potion magique sécurisée" required>
+                        <div class="input-hint">Minimum 8 caractères avec majuscules, minuscules et chiffres</div>
+                    </div>
+                    
+                    <!-- Confirmation mot de passe -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <span class="label-icon">🔍</span>
+                            Confirme ta Formule Magique
+                        </label>
+                        <input type="password" class="form-input" id="confirm_password" 
+                               placeholder="Répète ta potion magique" required>
+                    </div>
+                    
+                    <!-- Section Engagement -->
+                    <div class="engagement-section">
+                        <div class="engagement-title">
+                            <i class="fas fa-handshake"></i>
+                            Serment du Résistant
+                        </div>
+                        
+                        <ul class="engagement-list">
+                            <li>Je m'engage à promouvoir les logiciels libres</li>
+                            <li>Je lutterai contre l'obsolescence programmée</li>
+                            <li>Je partagerai mes connaissances avec la communauté</li>
+                            <li>Je respecterai les valeurs de NIRD : Inclusion, Responsabilité, Durabilité</li>
+                        </ul>
+                        
+                        <div class="engagement-checkbox">
+                            <input type="checkbox" id="acceptTerms" required>
+                            <label for="acceptTerms">Je jure par Toutatis de respecter le serment du résistant !</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Bouton d'inscription -->
+                    <button type="submit" class="signup-button" id="joinResistanceBtn">
+                        <i class="fas fa-shield-alt"></i>
+                        REJOINDRE LA RÉSISTANCE
+                        <i class="fas fa-fist-raised"></i>
+                    </button>
+                </form>
+                
+                <!-- Lien vers connexion -->
+                <div class="login-link">
+                    Déjà un·e résistant·e ? <a href="index.html">Connecte-toi ici</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Page de succès (cachée initialement) -->
+    <div class="success-page" id="successPage">
+        <div class="success-icon">🎉</div>
+        <h1 class="success-title">Bienvenue dans la Résistance !</h1>
+        
+        <div class="success-message">
+            <p><strong>Par Toutatis, tu es officiellement enrôlé·e !</strong></p>
+            <p>Ton nom de résistant·e : <strong id="resistantName"></strong></p>
+            <p>Tu as maintenant accès au Village Numérique Résistant et à toutes ses ressources pour construire ensemble un avenir numérique libre, durable et responsable.</p>
+        </div>
+        
+        <button class="success-button" onclick="window.location.href='/'">
+            <i class="fas fa-map-marked-alt"></i>
+            Explorer le Village
+        </button>
+        
+        <div style="margin-top: 40px; color: #666; font-size: 0.9rem;">
+            <p>📜 <strong>Rappel :</strong> Tu recevras un message par pigeon voyageur pour confirmer ton inscription.</p>
+            <p style="margin-top: 10px;">
+                <a href="https://nird.forge.apps.education.fr/" style="color: var(--gaulois-green); font-weight: bold; text-decoration: none;">
+                    <i class="fas fa-external-link-alt"></i> Accéder à la plateforme NIRD
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Créer des lucioles dynamiques
+        function createFireflies() {
+            const firefliesContainer = document.getElementById('firefliesContainer');
+            for (let i = 0; i < 15; i++) {
+                const firefly = document.createElement('div');
+                firefly.className = 'firefly';
+                firefly.style.left = `${Math.random() * 100}%`;
+                firefly.style.top = `${Math.random() * 100}%`;
+                firefly.style.animationDelay = `${Math.random() * 8}s`;
+                firefliesContainer.appendChild(firefly);
+            }
+        }
+        
+        // Vérification de la correspondance des mots de passe
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm_password');
+        
+        function checkPasswordMatch() {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            
+            if (confirmPassword === '') return true;
+            
+            return password === confirmPassword;
+        }
+        
+        confirmPasswordInput.addEventListener('input', function() {
+            if (!checkPasswordMatch()) {
+                this.style.borderColor = '#ff4444';
+                this.style.boxShadow = '0 0 25px rgba(255, 68, 68, 0.6)';
+            } else {
+                this.style.borderColor = '#00c851';
+                this.style.boxShadow = '0 0 25px rgba(0, 200, 81, 0.6)';
+            }
+        });
+        
+        // Gestion de l'inscription
+        const signupForm = document.getElementById('gaulishSignupForm');
+        const signupPage = document.getElementById('signupPage');
+        const successPage = document.getElementById('successPage');
+        const resistantNameEl = document.getElementById('resistantName');
+        
+        signupForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            // Récupérer les valeurs
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirm_password = document.getElementById('confirm_password').value;
+            const acceptTerms = document.getElementById('acceptTerms').checked;
+            
+            // Validation
+            let errors = [];
+            
+            if (!username) errors.push("Le nom de gaulois est requis");
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push("Un message de pigeon valide est requis");
+            if (password.length < 8) errors.push("La formule magique doit avoir au moins 8 caractères");
+            if (!checkPasswordMatch()) errors.push("Les formules magiques ne correspondent pas");
+            if (!acceptTerms) errors.push("Tu dois accepter le serment du résistant");
+            
+            if (errors.length > 0) {
+                alert("Erreurs :\n" + errors.join("\n"));
+                return;
+            }
+            
+            // Envoyer les données au serveur
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username,
+                        email,
+                        password,
+                        confirm_password
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Afficher la page de succès
+                    signupPage.style.display = "none";
+                    successPage.style.display = "block";
+                    resistantNameEl.textContent = username;
+                    
+                    // Animation supplémentaire
+                    createFireflies();
+                    
+                    // Redirection vers le dashboard après 5 secondes
+                    setTimeout(() => {
+                        window.location.href = data.redirect;
+                    }, 5000);
+                } else {
+                    alert("Erreur d'inscription : " + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert("Erreur de connexion au serveur.");
+            }
+        });
+        
+        // Initialiser les lucioles
+        createFireflies();
+    </script>
+</body>
+</html>

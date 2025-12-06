@@ -1,0 +1,1136 @@
+/* Variables de couleurs thème Village Gaulois */
+:root {
+    --gaulois-green: #2a7a2a;
+    --gaulois-gold: #ffd700;
+    --gaulois-brown: #8b4513;
+    --gaulois-sky: #87ceeb;
+    --gaulois-fire: #ff6b35;
+    --gaulois-stone: #f5e9d3;
+    --gaulois-dark-green: #1a472a;
+    --gaulois-red: #cc3333;
+}
+
+/* Reset et styles généraux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comic Sans MS', 'Segoe UI', cursive, sans-serif;
+}
+
+body {
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.1) 0%, transparent 20%),
+        linear-gradient(135deg, var(--gaulois-dark-green) 0%, var(--gaulois-green) 50%, var(--gaulois-dark-green) 100%);
+    min-height: 100vh;
+    color: var(--gaulois-brown);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Éléments flottants gaulois */
+.floating-gaulois {
+    position: absolute;
+    font-size: 2.5rem;
+    animation: floatAround 25s infinite linear;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.floating-gaulois:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; content: "🪓"; }
+.floating-gaulois:nth-child(2) { top: 20%; right: 10%; animation-delay: -5s; content: "🛡️"; }
+.floating-gaulois:nth-child(3) { bottom: 30%; left: 15%; animation-delay: -10s; content: "⚔️"; }
+.floating-gaulois:nth-child(4) { bottom: 10%; right: 20%; animation-delay: -15s; content: "🍗"; }
+
+/* Conteneur principal - Forteresse Gauloise */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    background: 
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f5e9d3" opacity="0.9"/><path d="M0,50 L100,50 M50,0 L50,100" stroke="%238b4513" stroke-width="2" stroke-dasharray="10,5"/></svg>'),
+        radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    border: 12px solid var(--gaulois-brown);
+    border-radius: 25px;
+    overflow: hidden;
+    animation: gateSwing 3s ease-in-out infinite alternate;
+    transform-origin: top center;
+    margin: 20px auto;
+    position: relative;
+    z-index: 10;
+    box-shadow: 
+        0 0 50px rgba(255, 215, 0, 0.3),
+        inset 0 0 50px rgba(139, 69, 19, 0.2);
+}
+
+@keyframes gateSwing {
+    0% { transform: rotate(-1deg); }
+    100% { transform: rotate(1deg); }
+}
+
+/* En-tête Gaulois */
+.header {
+    background: linear-gradient(135deg, var(--gaulois-brown) 0%, #a0522d 100%);
+    color: var(--gaulois-gold);
+    padding: 30px 40px;
+    text-align: center;
+    border-bottom: 8px dashed var(--gaulois-gold);
+    position: relative;
+    overflow: hidden;
+}
+
+.header:before {
+    content: "⚔️ ⚔️ ⚔️";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    opacity: 0.3;
+    font-size: 1.5rem;
+}
+
+.header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-shadow: 
+        3px 3px 0 var(--gaulois-brown),
+        6px 6px 0 rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+    background: linear-gradient(to right, #ffd700, #ffed4e, #ffd700);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: titleGlow 2s infinite alternate;
+}
+
+@keyframes titleGlow {
+    0% { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)); }
+    100% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
+}
+
+.header h2 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.tagline {
+    font-style: italic;
+    color: var(--gaulois-gold);
+    font-weight: 500;
+    background-color: rgba(42, 122, 42, 0.8);
+    padding: 8px 20px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 2px dashed var(--gaulois-gold);
+    animation: subtitlePulse 3s infinite;
+}
+
+@keyframes subtitlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Zone de jeu - Arène Gauloise */
+.game-area {
+    padding: 40px;
+    background: linear-gradient(145deg, #f5e9d3, #e8d5b5);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-area:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%238b4513" stroke-width="1" stroke-dasharray="5,3"/></svg>');
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Instructions en style parchemin */
+.instructions {
+    background: linear-gradient(to bottom, #fff5e1, #ffe8c4);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border-left: 8px solid var(--gaulois-brown);
+    position: relative;
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.2);
+    border: 4px solid var(--gaulois-brown);
+}
+
+.instructions:before {
+    content: "📜";
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    background: var(--gaulois-gold);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--gaulois-brown);
+}
+
+.instructions h3 {
+    color: var(--gaulois-brown);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.8rem;
+    border-bottom: 3px dashed var(--gaulois-brown);
+    padding-bottom: 10px;
+}
+
+.instructions h3:before {
+    content: "🎯";
+    font-size: 1.5rem;
+    animation: swordSwing 1s infinite alternate;
+}
+
+@keyframes swordSwing {
+    0% { transform: rotate(-15deg); }
+    100% { transform: rotate(15deg); }
+}
+
+.instructions p {
+    color: #5a3510;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.key {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(145deg, var(--gaulois-brown), #a0522d);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gaulois-gold);
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0 5px 0 #5a3510;
+    animation: keyPulse 2s infinite;
+}
+
+@keyframes keyPulse {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Canvas du jeu - Tablette de pierre */
+#gameCanvas {
+    background: linear-gradient(135deg, #e8d5b5, #d4b483);
+    border: 8px solid var(--gaulois-brown);
+    border-radius: 15px;
+    box-shadow: 
+        0 15px 35px rgba(139, 69, 19, 0.3),
+        inset 0 0 30px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 20px auto;
+    position: relative;
+}
+
+/* Points de destination - Boucliers Gaulois */
+.destinations {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding: 0 20px;
+    position: relative;
+}
+
+.destination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 180px;
+}
+
+.destination-marker {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    background: radial-gradient(circle at center, var(--gaulois-gold) 0%, #daa520 100%);
+    border: 8px solid var(--gaulois-brown);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.destination-marker:before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.destination-marker.pending {
+    background: radial-gradient(circle at center, #ddd, #bbb);
+    border-color: #999;
+    color: #666;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.destination-marker.active {
+    background: radial-gradient(circle at center, var(--gaulois-gold) 0%, #ffed4e 100%);
+    border-color: var(--gaulois-brown);
+    color: var(--gaulois-brown);
+    box-shadow: 
+        0 0 30px rgba(255, 215, 0, 0.7),
+        0 0 0 15px rgba(139, 69, 19, 0.2);
+    animation: shieldRotate 10s infinite linear, pulse 1.5s infinite alternate;
+}
+
+@keyframes shieldRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+.destination-marker.completed {
+    background: radial-gradient(circle at center, var(--gaulois-green) 0%, #3cb371 100%);
+    border-color: #2a623d;
+    color: white;
+    animation: completedGlow 2s infinite alternate;
+}
+
+@keyframes completedGlow {
+    0% { box-shadow: 0 0 20px rgba(42, 122, 42, 0.5); }
+    100% { box-shadow: 0 0 40px rgba(42, 122, 42, 0.8); }
+}
+
+.destination-label {
+    font-weight: 600;
+    color: var(--gaulois-brown);
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    padding: 8px 15px;
+    background: rgba(255, 215, 0, 0.2);
+    border-radius: 10px;
+    border: 2px solid var(--gaulois-brown);
+}
+
+/* Popup de saisie - Parchemin magique */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 71, 42, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.popup {
+    background: 
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f5e9d3"/><path d="M10,10 L90,10 L90,90 L10,90 Z" fill="none" stroke="%238b4513" stroke-width="2"/></svg>'),
+        linear-gradient(to bottom, #fff5e1, #ffe8c4);
+    padding: 50px;
+    border-radius: 25px;
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 50px rgba(139, 69, 19, 0.1);
+    width: 90%;
+    max-width: 800px;
+    animation: popupIn 0.4s ease;
+    border: 15px solid var(--gaulois-brown);
+    position: relative;
+    overflow: hidden;
+}
+
+.popup:before {
+    content: "🔮";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 4rem;
+    z-index: 1;
+}
+
+.popup-title {
+    color: var(--gaulois-brown);
+    font-size: 2.2rem;
+    margin-bottom: 35px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+    border-bottom: 4px dashed var(--gaulois-brown);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.popup-title:before,
+.popup-title:after {
+    content: "⚔️";
+    font-size: 1.8rem;
+    animation: swordSwing 1s infinite alternate;
+}
+
+.form-group {
+    margin-bottom: 35px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 15px;
+    color: var(--gaulois-brown);
+    font-weight: 600;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: labelPulse 3s infinite;
+}
+
+@keyframes labelPulse {
+    0%, 100% { color: var(--gaulois-brown); }
+    50% { color: var(--gaulois-fire); }
+}
+
+.form-control {
+    width: 100%;
+    padding: 20px 25px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 5px solid var(--gaulois-brown);
+    border-radius: 15px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    font-family: 'Comic Sans MS', cursive;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+    color: var(--gaulois-brown);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--gaulois-gold);
+    box-shadow: 
+        0 0 25px rgba(255, 215, 0, 0.6),
+        inset 0 0 15px rgba(255, 215, 0, 0.2);
+    transform: scale(1.02);
+}
+
+/* Boutons Gaulois */
+.btn {
+    padding: 18px 35px;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Comic Sans MS', cursive;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.btn:hover:before {
+    opacity: 1;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--gaulois-fire), #ff8c42);
+    color: white;
+    border: 3px solid #daa520;
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(255, 107, 53, 0.4);
+    background: linear-gradient(45deg, #ff8c42, var(--gaulois-fire));
+}
+
+.btn-success {
+    background: linear-gradient(45deg, var(--gaulois-green), #3cb371);
+    color: white;
+    border: 3px solid #2a7a2a;
+}
+
+.btn-success:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(42, 122, 42, 0.4);
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Zone de message - Tablette runique */
+#message {
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin: 30px 40px;
+    display: none;
+    border: 5px solid;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+#message:before {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+}
+
+#message.success {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border-color: var(--gaulois-green);
+    color: #1a472a;
+    display: block;
+}
+
+#message.success:before {
+    content: "✅";
+}
+
+#message.error {
+    background: linear-gradient(135deg, #ffebee, #ffcdd2);
+    border-color: var(--gaulois-fire);
+    color: #8b0000;
+    display: block;
+}
+
+#message.error:before {
+    content: "❌";
+}
+
+/* STYLE DU JEU SNAKE NOKIA REVISÉ - THÈME GAULOIS */
+.snake-nokia-container {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(145deg, #fff5e1, #ffe8c4);
+    border-radius: 20px;
+    border: 8px solid var(--gaulois-brown);
+    box-shadow: 
+        inset 0 0 25px rgba(139, 69, 19, 0.2),
+        0 15px 35px rgba(139, 69, 19, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.snake-nokia-container:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%238b4513" stroke-width="1" stroke-dasharray="10,5"/></svg>');
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+#snakeNokiaCanvas {
+    display: block;
+    background: linear-gradient(135deg, #2a7a2a, #1a472a);
+    border: 10px solid var(--gaulois-brown);
+    border-radius: 15px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    margin: 0 auto 25px auto;
+    box-shadow: 
+        inset 0 0 25px rgba(0, 0, 0, 0.4),
+        0 10px 25px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+}
+
+#snakeScore {
+    color: var(--gaulois-gold);
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: center;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    background: rgba(42, 122, 42, 0.7);
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    border: 3px solid var(--gaulois-gold);
+    animation: scorePulse 2s infinite alternate;
+}
+
+@keyframes scorePulse {
+    0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+    100% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.7); }
+}
+
+.nokia-instructions {
+    background: linear-gradient(to right, #ffe8c4, #ffd8a8);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border-left: 10px solid var(--gaulois-fire);
+    position: relative;
+    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.2);
+    border: 3px solid var(--gaulois-brown);
+}
+
+.nokia-instructions:before {
+    content: "🐍";
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.2rem;
+    background: var(--gaulois-fire);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid var(--gaulois-brown);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.nokia-instructions p {
+    color: #5a3510;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.nokia-instructions p strong {
+    color: var(--gaulois-fire);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.nokia-controls {
+    display: flex;
+    gap: 15px;
+    margin: 25px auto;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 400px;
+}
+
+.nokia-key {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(145deg, var(--gaulois-brown), #a0522d);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gaulois-gold);
+    font-size: 1.8rem;
+    font-weight: bold;
+    box-shadow: 
+        0 6px 0 #5a3510,
+        0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.1s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.nokia-key:active {
+    transform: translateY(4px);
+    box-shadow: 
+        0 2px 0 #5a3510,
+        0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Interface finale - Temple Gaulois */
+.final-interface {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.1) 0%, transparent 20%),
+        linear-gradient(135deg, var(--gaulois-dark-green) 0%, var(--gaulois-green) 50%, var(--gaulois-dark-green) 100%);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeIn 1s ease;
+    padding: 20px;
+}
+
+.final-content {
+    background: 
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f5e9d3"/><path d="M5,5 L95,5 L95,95 L5,95 Z" fill="none" stroke="%238b4513" stroke-width="2" stroke-dasharray="10,5"/></svg>'),
+        linear-gradient(to bottom, #fff5e1, #ffe8c4);
+    padding: 60px;
+    border-radius: 30px;
+    box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.6),
+        inset 0 0 60px rgba(139, 69, 19, 0.1);
+    max-width: 900px;
+    width: 90%;
+    text-align: center;
+    animation: scaleIn 0.8s ease;
+    border: 20px solid var(--gaulois-brown);
+    position: relative;
+}
+
+.final-content:before {
+    content: "🏛️";
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 5rem;
+    z-index: 1;
+}
+
+.final-title {
+    color: var(--gaulois-brown);
+    font-size: 3.2rem;
+    margin-bottom: 40px;
+    font-weight: 700;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, var(--gaulois-brown), #a0522d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.success-message {
+    font-size: 3rem;
+    color: var(--gaulois-green);
+    margin-bottom: 40px;
+    font-weight: 600;
+    animation: glow 2s infinite alternate;
+    padding: 20px;
+    background: rgba(42, 122, 42, 0.1);
+    border-radius: 15px;
+    border: 5px solid var(--gaulois-green);
+}
+
+@keyframes glow {
+    from { 
+        text-shadow: 0 0 10px rgba(42, 122, 42, 0.5);
+        box-shadow: 0 0 20px rgba(42, 122, 42, 0.3);
+    }
+    to { 
+        text-shadow: 0 0 20px rgba(42, 122, 42, 0.8), 0 0 30px rgba(42, 122, 42, 0.6);
+        box-shadow: 0 0 40px rgba(42, 122, 42, 0.6);
+    }
+}
+
+.user-info {
+    background: linear-gradient(135deg, #e8d5b5, #d4b483);
+    padding: 30px;
+    border-radius: 20px;
+    margin: 40px 0;
+    border: 8px solid var(--gaulois-brown);
+    position: relative;
+}
+
+.user-info:before {
+    content: "👑";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    background: var(--gaulois-gold);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid var(--gaulois-brown);
+}
+
+.user-info h3 {
+    color: var(--gaulois-brown);
+    margin-bottom: 25px;
+    font-size: 2rem;
+    border-bottom: 3px dashed var(--gaulois-brown);
+    padding-bottom: 15px;
+}
+
+.user-details {
+    font-size: 1.4rem;
+    color: var(--gaulois-dark-green);
+    line-height: 2;
+    text-align: left;
+    padding: 0 20px;
+}
+
+.access-granted {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    padding: 30px;
+    border-radius: 20px;
+    margin: 40px 0;
+    border: 8px solid var(--gaulois-green);
+    position: relative;
+}
+
+.access-granted:before {
+    content: "🔓";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    background: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid var(--gaulois-green);
+}
+
+.access-granted h4 {
+    color: var(--gaulois-green);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.access-granted p {
+    color: #2e7d32;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.final-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.btn-final {
+    padding: 25px 40px;
+    font-size: 1.3rem;
+    border-radius: 15px;
+    min-width: 250px;
+    border: 5px solid;
+    font-weight: bold;
+}
+
+.btn-final:nth-child(1) {
+    background: linear-gradient(45deg, var(--gaulois-green), #3cb371);
+    border-color: #2a623d;
+    color: white;
+}
+
+.btn-final:nth-child(2) {
+    background: linear-gradient(45deg, var(--gaulois-brown), #a0522d);
+    border-color: #5a3510;
+    color: var(--gaulois-gold);
+}
+
+/* Lucioles numériques */
+.fireflies {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.firefly {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: var(--gaulois-gold);
+    border-radius: 50%;
+    animation: fireflyMove 10s infinite linear;
+    opacity: 0.7;
+    box-shadow: 0 0 10px var(--gaulois-gold);
+}
+
+@keyframes fireflyMove {
+    0% { transform: translate(0, 0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translate(150px, -150px); opacity: 0; }
+}
+
+/* Animations générales */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes popupIn {
+    from { transform: scale(0.8) translateY(-20px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes floatAround {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(20px, -20px) rotate(90deg); }
+    50% { transform: translate(40px, 0) rotate(180deg); }
+    75% { transform: translate(20px, 20px) rotate(270deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        border-radius: 15px;
+        margin: 10px;
+        border-width: 8px;
+    }
+    
+    .header {
+        padding: 20px 15px;
+    }
+    
+    .header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .game-area {
+        padding: 20px;
+    }
+    
+    #gameCanvas {
+        width: 100%;
+        max-width: 500px;
+        height: 300px;
+    }
+    
+    .destinations {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+    
+    .destination {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .destination-marker {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .popup {
+        padding: 30px;
+        border-width: 10px;
+    }
+    
+    .popup-title {
+        font-size: 1.8rem;
+    }
+    
+    .btn-container {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .snake-nokia-container {
+        padding: 20px;
+    }
+    
+    #snakeNokiaCanvas {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .nokia-instructions {
+        padding: 20px;
+        margin-left: 15px;
+    }
+    
+    .nokia-instructions:before {
+        left: -25px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.8rem;
+    }
+    
+    .nokia-key {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .final-content {
+        padding: 30px;
+        border-width: 15px;
+    }
+    
+    .final-title {
+        font-size: 2.2rem;
+    }
+    
+    .success-message {
+        font-size: 2.2rem;
+    }
+    
+    .user-details {
+        font-size: 1.2rem;
+    }
+    
+    .final-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-final {
+        width: 100%;
+        min-width: auto;
+        padding: 20px;
+    }
+    
+    .floating-gaulois {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #gameCanvas {
+        height: 250px;
+    }
+    
+    #snakeNokiaCanvas {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .header h2 {
+        font-size: 1rem;
+    }
+    
+    .final-title {
+        font-size: 1.8rem;
+    }
+    
+    .success-message {
+        font-size: 1.8rem;
+        padding: 15px;
+    }
+    
+    .user-info {
+        padding: 20px;
+    }
+    
+    .user-details {
+        font-size: 1rem;
+        padding: 0;
+    }
+    
+    .instructions h3 {
+        font-size: 1.4rem;
+    }
+    
+    .instructions p {
+        font-size: 1rem;
+    }
+    
+    .nokia-instructions {
+        padding: 15px;
+        margin-left: 10px;
+    }
+    
+    .nokia-instructions:before {
+        left: -20px;
+        width: 35px;
+        height: 35px;
+        font-size: 1.5rem;
+    }
+    
+    .nokia-key {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+}

@@ -1,0 +1,678 @@
+/* Variables de couleurs thème Village Gaulois */
+:root {
+    --gaulois-green: #2a7a2a;
+    --gaulois-gold: #ffd700;
+    --gaulois-brown: #8b4513;
+    --gaulois-sky: #87ceeb;
+    --gaulois-fire: #ff6b35;
+    --gaulois-stone: #f5e9d3;
+    --gaulois-dark-green: #1a472a;
+}
+
+/* Reset et styles généraux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comic Sans MS', 'Segoe UI', cursive, sans-serif;
+}
+
+body {
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.1) 0%, transparent 20%),
+        linear-gradient(135deg, var(--gaulois-dark-green) 0%, var(--gaulois-green) 50%, var(--gaulois-dark-green) 100%);
+    min-height: 100vh;
+    color: var(--gaulois-brown);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Éléments flottants gaulois */
+.floating-gaulois {
+    position: absolute;
+    font-size: 2.5rem;
+    animation: floatAround 25s infinite linear;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.floating-gaulois:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; content: "🪓"; }
+.floating-gaulois:nth-child(2) { top: 20%; right: 10%; animation-delay: -5s; content: "🛡️"; }
+.floating-gaulois:nth-child(3) { bottom: 30%; left: 15%; animation-delay: -10s; content: "⚔️"; }
+.floating-gaulois:nth-child(4) { bottom: 10%; right: 20%; animation-delay: -15s; content: "🍗"; }
+
+@keyframes floatAround {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(50px, -30px) rotate(90deg); }
+    50% { transform: translate(0, -50px) rotate(180deg); }
+    75% { transform: translate(-50px, -30px) rotate(270deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+/* Conteneur principal - Forteresse Gauloise */
+.portal-container {
+    width: 100%;
+    max-width: 1000px;
+    background: 
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f5e9d3" opacity="0.9"/><path d="M0,50 L100,50 M50,0 L50,100" stroke="%238b4513" stroke-width="2" stroke-dasharray="10,5"/></svg>'),
+        radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    border: 12px solid var(--gaulois-brown);
+    border-radius: 25px;
+    overflow: hidden;
+    animation: gateSwing 3s ease-in-out infinite alternate;
+    transform-origin: top center;
+    position: relative;
+    z-index: 10;
+    box-shadow: 
+        0 0 50px rgba(255, 215, 0, 0.3),
+        inset 0 0 50px rgba(139, 69, 19, 0.2);
+}
+
+@keyframes gateSwing {
+    0% { transform: rotate(-1deg); }
+    100% { transform: rotate(1deg); }
+}
+
+/* En-tête Gaulois */
+.village-gate {
+    background: linear-gradient(135deg, var(--gaulois-brown) 0%, #a0522d 100%);
+    color: var(--gaulois-gold);
+    padding: 40px 30px;
+    text-align: center;
+    border-bottom: 8px dashed var(--gaulois-gold);
+    position: relative;
+    overflow: hidden;
+}
+
+.village-gate:before {
+    content: "⚔️ ⚔️ ⚔️";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    opacity: 0.3;
+    font-size: 1.5rem;
+}
+
+.gate-title {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-shadow: 
+        3px 3px 0 var(--gaulois-brown),
+        6px 6px 0 rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+    background: linear-gradient(to right, #ffd700, #ffed4e, #ffd700);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: titleGlow 2s infinite alternate;
+}
+
+@keyframes titleGlow {
+    0% { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)); }
+    100% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
+}
+
+.gate-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 15px;
+    color: white;
+    font-style: italic;
+    background-color: rgba(42, 122, 42, 0.8);
+    padding: 8px 20px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 2px dashed var(--gaulois-gold);
+    animation: subtitlePulse 3s infinite;
+}
+
+@keyframes subtitlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Forteresse d'inscription */
+.signup-fortress {
+    display: flex;
+    width: 100%;
+    background: linear-gradient(145deg, #f5e9d3, #e8d5b5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mur gaulois */
+.gaulish-wall {
+    flex: 1;
+    padding: 40px;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 10px,
+            rgba(139, 69, 19, 0.1) 10px,
+            rgba(139, 69, 19, 0.1) 20px
+        ),
+        linear-gradient(135deg, #5a3510, #8b4513);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-right: 6px solid var(--gaulois-brown);
+}
+
+.wall-shield {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at center, var(--gaulois-gold) 0%, #daa520 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid var(--gaulois-brown);
+    margin-bottom: 30px;
+    animation: shieldRotate 10s infinite linear;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+}
+
+@keyframes shieldRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.shield-icon {
+    font-size: 4rem;
+    color: var(--gaulois-green);
+}
+
+.wall-message {
+    text-align: center;
+    color: white;
+    font-size: 1.1rem;
+    background-color: rgba(139, 69, 19, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    border: 3px solid var(--gaulois-gold);
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.wall-message:before {
+    content: "💬";
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    background: var(--gaulois-gold);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--gaulois-brown);
+}
+
+/* Zone de formulaire */
+.scroll-form {
+    flex: 1.2;
+    padding: 40px;
+    background: linear-gradient(145deg, #f5e9d3, #e8d5b5);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-form:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%238b4513" stroke-width="1" stroke-dasharray="5,3"/></svg>');
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.form-title {
+    font-size: 2rem;
+    color: var(--gaulois-brown);
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 15px;
+    border-bottom: 4px dashed var(--gaulois-brown);
+}
+
+.form-title:before,
+.form-title:after {
+    content: "⚔️";
+    font-size: 1.8rem;
+    animation: swordSwing 1s infinite alternate;
+}
+
+@keyframes swordSwing {
+    0% { transform: rotate(-15deg); }
+    100% { transform: rotate(15deg); }
+}
+
+/* Groupes de formulaire */
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--gaulois-brown);
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: labelPulse 3s infinite;
+}
+
+@keyframes labelPulse {
+    0%, 100% { color: var(--gaulois-brown); }
+    50% { color: var(--gaulois-fire); }
+}
+
+.label-icon {
+    font-size: 1.5rem;
+    animation: iconBounce 1s infinite alternate;
+}
+
+@keyframes iconBounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+}
+
+/* Champs de formulaire */
+.form-input {
+    width: 100%;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 5px solid var(--gaulois-brown);
+    border-radius: 15px;
+    font-size: 1.1rem;
+    color: var(--gaulois-brown);
+    transition: all 0.3s;
+    font-family: 'Comic Sans MS', cursive;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--gaulois-gold);
+    box-shadow: 
+        0 0 25px rgba(255, 215, 0, 0.6),
+        inset 0 0 15px rgba(255, 215, 0, 0.2);
+    transform: scale(1.02);
+}
+
+.input-hint {
+    font-size: 0.9rem;
+    color: #a0522d;
+    margin-top: 8px;
+    font-style: italic;
+    padding-left: 5px;
+}
+
+/* Section Engagement */
+.engagement-section {
+    margin: 30px 0;
+    padding: 25px;
+    background: linear-gradient(135deg, #e8d5b5, #d4b483);
+    border-radius: 20px;
+    border: 8px solid var(--gaulois-brown);
+    position: relative;
+}
+
+.engagement-section:before {
+    content: "🛡️";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    background: var(--gaulois-gold);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid var(--gaulois-brown);
+}
+
+.engagement-title {
+    color: var(--gaulois-brown);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding-bottom: 10px;
+    border-bottom: 3px dashed var(--gaulois-brown);
+}
+
+.engagement-list {
+    list-style-type: none;
+    padding: 0 15px;
+    margin-bottom: 20px;
+}
+
+.engagement-list li {
+    margin-bottom: 15px;
+    padding-left: 35px;
+    position: relative;
+    color: var(--gaulois-dark-green);
+    font-size: 1.1rem;
+}
+
+.engagement-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    color: var(--gaulois-green);
+    font-weight: bold;
+    background: var(--gaulois-gold);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--gaulois-brown);
+}
+
+.engagement-checkbox {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    border: 3px solid var(--gaulois-brown);
+}
+
+.engagement-checkbox input {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    accent-color: var(--gaulois-green);
+}
+
+.engagement-checkbox label {
+    color: var(--gaulois-dark-green);
+    font-size: 1rem;
+    cursor: pointer;
+    flex: 1;
+}
+
+/* Bouton d'inscription */
+.signup-button {
+    width: 100%;
+    padding: 25px;
+    background: linear-gradient(45deg, var(--gaulois-fire), #ff8c42);
+    color: white;
+    border: 5px solid #daa520;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Comic Sans MS', cursive;
+    text-shadow: 2px 2px 0 var(--gaulois-brown);
+    box-shadow: 0 15px 30px rgba(255, 107, 53, 0.4);
+}
+
+.signup-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(255, 107, 53, 0.6);
+    background: linear-gradient(45deg, #ff8c42, var(--gaulois-fire));
+}
+
+/* Lien de connexion */
+.login-link {
+    text-align: center;
+    margin-top: 30px;
+    color: var(--gaulois-brown);
+    font-size: 1.1rem;
+}
+
+.login-link a {
+    color: var(--gaulois-green);
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px dashed var(--gaulois-green);
+    padding-bottom: 2px;
+    transition: all 0.3s;
+}
+
+.login-link a:hover {
+    color: var(--gaulois-fire);
+    border-bottom-color: var(--gaulois-fire);
+}
+
+/* Page de succès */
+.success-page {
+    display: none;
+    width: 100%;
+    max-width: 800px;
+    background: linear-gradient(145deg, #f5e9d3, #e8d5b5);
+    border: 20px solid var(--gaulois-brown);
+    border-radius: 30px;
+    padding: 50px;
+    text-align: center;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+    position: relative;
+    overflow: hidden;
+    animation: pageReveal 1s ease-out;
+    z-index: 100;
+}
+
+.success-page:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%238b4513" stroke-width="1" stroke-dasharray="5,3"/></svg>');
+    pointer-events: none;
+    opacity: 0.1;
+}
+
+.success-icon {
+    font-size: 5rem;
+    color: var(--gaulois-green);
+    margin-bottom: 30px;
+    animation: successSpin 2s ease-out;
+}
+
+@keyframes successSpin {
+    0% { transform: rotate(0deg) scale(0); }
+    70% { transform: rotate(360deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+.success-title {
+    font-size: 2.8rem;
+    color: var(--gaulois-brown);
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, var(--gaulois-brown), #a0522d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.success-message {
+    font-size: 1.3rem;
+    color: var(--gaulois-dark-green);
+    margin-bottom: 35px;
+    line-height: 1.8;
+    padding: 0 20px;
+}
+
+.success-message p {
+    margin-bottom: 15px;
+}
+
+.success-button {
+    padding: 20px 40px;
+    background: linear-gradient(45deg, var(--gaulois-green), #3cb371);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    box-shadow: 0 10px 20px rgba(42, 122, 42, 0.4);
+}
+
+.success-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(42, 122, 42, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .signup-fortress {
+        flex-direction: column;
+    }
+    
+    .gaulish-wall {
+        border-right: none;
+        border-bottom: 6px solid var(--gaulois-brown);
+        padding: 30px;
+    }
+    
+    .gate-title {
+        font-size: 2.2rem;
+    }
+    
+    .wall-shield {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .shield-icon {
+        font-size: 3rem;
+    }
+    
+    .portal-container {
+        border-radius: 15px;
+        border-width: 8px;
+    }
+    
+    .scroll-form {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .village-gate {
+        padding: 25px 15px;
+    }
+    
+    .gate-title {
+        font-size: 1.8rem;
+    }
+    
+    .gate-subtitle {
+        font-size: 1rem;
+        padding: 6px 15px;
+    }
+    
+    .form-title {
+        font-size: 1.6rem;
+    }
+    
+    .engagement-section {
+        padding: 20px;
+    }
+    
+    .success-page {
+        padding: 30px;
+        border-width: 15px;
+    }
+    
+    .success-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* Lucioles numériques */
+.fireflies {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.firefly {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: var(--gaulois-gold);
+    border-radius: 50%;
+    animation: fireflyMove 10s infinite linear;
+    opacity: 0.7;
+    box-shadow: 0 0 10px var(--gaulois-gold);
+}
+
+@keyframes fireflyMove {
+    0% { transform: translate(0, 0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translate(150px, -150px); opacity: 0; }
+}
+
+@keyframes pageReveal {
+    0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}

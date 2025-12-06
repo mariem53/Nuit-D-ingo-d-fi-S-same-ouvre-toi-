@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MECI - Accès Autorisé</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- Éléments flottants -->
+    <div class="floating-gaulois">🪓</div>
+    <div class="floating-gaulois">🛡️</div>
+    <div class="floating-gaulois">⚔️</div>
+    <div class="floating-gaulois">🍗</div>
+    
+    <!-- Lucioles -->
+    <div class="fireflies" id="firefliesContainer"></div>
+    
+    <!-- Contenu principal -->
+    <div class="container">
+        <div class="header">
+            <h1>MECI</h1>
+            <h2>Accès Autorisé - Système Sécurisé</h2>
+        </div>
+        
+        <div class="success-message">
+            <h3>🎉 Connexion Réussie !</h3>
+            <p>Bienvenue dans le système MECI - Expert en comptage transactionnel</p>
+            <p>Votre identité a été vérifiée avec succès et vous avez maintenant accès à toutes les fonctionnalités.</p>
+        </div>
+        
+        <div class="user-info">
+            <h4>📋 Informations de Session</h4>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Utilisateur :</span>
+                    <span class="info-value highlight" id="sessionUsername">Chargement...</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Date d'accès :</span>
+                    <span class="info-value" id="accessTime"></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Statut :</span>
+                    <span class="info-value success">✓ Connecté</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Niveau d'accès :</span>
+                    <span class="info-value">Administrateur</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="access-granted">
+            <h4>✅ Accès Complet Accordé</h4>
+            <p>Vous avez maintenant accès à toutes les fonctionnalités du système MECI :</p>
+            <p>• Analyse du gaz naturel et liquide • Comptage transactionnel • Énergies renouvelables</p>
+            <p>• Rapports détaillés • Surveillance en temps réel • Gestion des données</p>
+        </div>
+        
+        <div class="buttons-container">
+            <button onclick="logout()" class="btn btn-logout">
+                <span class="btn btn-logout">🚪 Se Déconnecter</span>
+            </button>
+        </div>
+        
+        <div class="footer">
+            <p>MECI - Système de gestion des énergies | Sécurisé par vérification humaine</p>
+            <p>Session active - <span id="currentDate"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Vérifier la session au chargement
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const response = await fetch('/api/session');
+                const data = await response.json();
+                
+                if (!data.authenticated) {
+                    window.location.href = '/';
+                    return;
+                }
+                
+                // Mettre à jour les informations utilisateur
+                document.getElementById('sessionUsername').textContent = data.username;
+                
+                // Mettre à jour la date et l'heure
+                const now = new Date();
+                document.getElementById('accessTime').textContent = 
+                    now.toLocaleDateString('fr-FR', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                
+                document.getElementById('currentDate').textContent = 
+                    now.toLocaleDateString('fr-FR');
+                
+                // Créer les lucioles
+                createFireflies();
+                
+            } catch (error) {
+                console.error('Error:', error);
+                window.location.href = '/';
+            }
+        });
+        
+        // Générer des lucioles
+        function createFireflies() {
+            const container = document.getElementById('firefliesContainer');
+            const fireflyCount = 15;
+            
+            for (let i = 0; i < fireflyCount; i++) {
+                const firefly = document.createElement('div');
+                firefly.className = 'firefly';
+                
+                firefly.style.left = Math.random() * 100 + '%';
+                firefly.style.top = Math.random() * 100 + '%';
+                firefly.style.animationDelay = Math.random() * 10 + 's';
+                
+                container.appendChild(firefly);
+            }
+        }
+        
+        // Fonction de déconnexion
+        async function logout() {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter du système MECI ?')) {
+                try {
+                    await fetch('/logout');
+                    window.location.href = '/';
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Erreur lors de la déconnexion. Veuillez réessayer.');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <title>MECI - Vérification Humaine</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* Styles supplémentaires pour la page de connexion */
+        .login-form-container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--gaulois-stone);
+            border-radius: 20px;
+            border: 8px solid var(--gaulois-brown);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+            display: none;
+        }
+        
+        .login-form {
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gaulois-brown);
+            font-weight: bold;
+        }
+        
+        .login-input {
+            width: 100%;
+            padding: 15px;
+            border: 4px solid var(--gaulois-brown);
+            border-radius: 12px;
+            font-size: 16px;
+            background: white;
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, var(--gaulois-green), #3cb371);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .btn-login:hover {
+            background: linear-gradient(45deg, #3cb371, var(--gaulois-green));
+            transform: translateY(-3px);
+        }
+        
+        .login-message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+        
+        .login-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+            display: block;
+        }
+        
+        .login-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+            display: block;
+        }
+        
+        .switch-form {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--gaulois-brown);
+        }
+        
+        .switch-form a {
+            color: var(--gaulois-green);
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 2px dashed var(--gaulois-green);
+            cursor: pointer;
+        }
+        
+        .switch-form a:hover {
+            color: var(--gaulois-fire);
+            border-bottom-color: var(--gaulois-fire);
+        }
+    </style>
+</head>
+<body>
+    <!-- Interface principale du jeu -->
+    <div class="container" id="mainContainer">
+        <!-- En-tête MECI -->
+        <div class="header">
+            <h1>MECI</h1>
+            <h2>Expert en comptage transactionnel et analyse du gaz naturel, du liquide et des énergies renouvelables</h2>
+            <p class="tagline">Vérification humaine par exploration</p>
+        </div>
+        
+        <!-- Zone de jeu -->
+        <div class="game-area">
+            <div class="instructions">
+                <h3>🎯 Instructions du jeu</h3>
+                <p>Déplacez le point bleu avec les flèches du clavier et atteignez chaque destination dans l'ordre.</p>
+                <p>Lorsque vous atteignez une destination, un formulaire s'ouvrira pour saisir vos informations.</p>
+                <div class="controls">
+                    <div class="key">↑</div>
+                    <div class="key">↓</div>
+                    <div class="key">←</div>
+                    <div class="key">→</div>
+                    <div style="color: #666; margin-left: 10px;">Utilisez les touches fléchées</div>
+                </div>
+            </div>
+            
+            <!-- Canvas du jeu principal -->
+            <canvas id="gameCanvas" width="600" height="400"></canvas>
+            
+            <!-- Points de destination -->
+            <div class="destinations">
+                <div class="destination">
+                    <div class="destination-marker pending" id="marker1">1</div>
+                    <div class="destination-label">Nom d'utilisateur</div>
+                </div>
+                <div class="destination">
+                    <div class="destination-marker pending" id="marker2">2</div>
+                    <div class="destination-label">Mot de passe</div>
+                </div>
+                <div class="destination">
+                    <div class="destination-marker pending" id="marker3">3</div>
+                    <div class="destination-label">Vérification Snake</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bouton d'inscription uniquement -->
+<div style="text-align: center; margin: 30px 0;">
+    <button class="btn btn-success" onclick="showRegisterForm()">
+        Pas encore inscrit ? S'inscrire
+    </button>
+</div>
+        
+        <!-- Popup de saisie -->
+        <div class="popup-overlay" id="popupOverlay">
+            <div class="popup" id="popupContent">
+                <!-- Le contenu sera injecté par JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Zone de message -->
+        <div id="message"></div>
+    </div>
+
+    <!-- Formulaire de connexion (caché par défaut) -->
+    <div class="login-form-container" id="loginFormContainer">
+        <div class="header" style="border-bottom: none; padding: 0 0 20px 0;">
+            <h1 style="font-size: 2.2rem;">Connexion MECI</h1>
+            <p class="tagline">Accédez à votre compte sécurisé</p>
+        </div>
+        
+        <div id="loginMessage" class="login-message"></div>
+        
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="loginUsername">Nom d'utilisateur:</label>
+                <input type="text" id="loginUsername" name="username" class="login-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="loginPassword">Mot de passe:</label>
+                <input type="password" id="loginPassword" name="password" class="login-input" required>
+            </div>
+            
+            <button type="submit" class="btn-login">Se connecter</button>
+        </form>
+        
+        <div class="switch-form">
+            <p>Pas encore de compte ? <a onclick="showRegisterForm()">S'inscrire ici</a></p>
+            <p><a onclick="backToGame()">← Retour au jeu</a></p>
+        </div>
+    </div>
+
+    <!-- Interface finale - Sésame ouvre-toi ! -->
+    <div class="final-interface" id="finalInterface">
+        <div class="final-content">
+            <h1 class="final-title">MECI - Accès sécurisé</h1>
+            
+            <div class="success-message" id="sesameMessage">
+                Sésame ouvre-toi !
+            </div>
+            
+            <div class="user-info">
+                <h3>🎉 Vérification humaine réussie !</h3>
+                <div class="user-details">
+                    <p><strong>Utilisateur :</strong> <span id="finalUsername"></span></p>
+                    <p><strong>Date d'accès :</strong> <span id="accessDate"></span></p>
+                    <p><strong>Statut :</strong> <span style="color: var(--gaulois-green); font-weight: bold;">Accès autorisé ✓</span></p>
+                </div>
+            </div>
+            
+            <div class="access-granted">
+                <h4>✅ Accès complet accordé</h4>
+                <p>Vous avez prouvé votre humanité en complétant avec succès le processus de vérification en 3 étapes.</p>
+                <p>Vous avez maintenant accès à toutes les fonctionnalités du système MECI.</p>
+            </div>
+            
+            <div class="btn-container" style="margin-top: 40px;">
+    
+                <button class="btn btn-logout" onclick="restartGame()">🚪 Se Déconnecter</button>
+            </div>
+            
+            <div style="margin-top: 40px; color: #666; font-size: 0.9rem;">
+                <p>MECI - Système de vérification humaine | Sécurité renforcée par intelligence artificielle</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+    <script>
+        // Fonctions pour gérer les formulaires
+        
+        function showLoginForm() {
+            document.getElementById('mainContainer').style.display = 'none';
+            document.getElementById('loginFormContainer').style.display = 'block';
+        }
+        
+        function showRegisterForm() {
+            window.location.href = 'register.html';
+        }
+        
+        function backToGame() {
+            document.getElementById('loginFormContainer').style.display = 'none';
+            document.getElementById('mainContainer').style.display = 'block';
+        }
+        
+        // Gestion du formulaire de connexion
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const messageDiv = document.getElementById('loginMessage');
+            
+            // Validation
+            if (!username || !password) {
+                messageDiv.textContent = "Tous les champs sont requis.";
+                messageDiv.className = "login-message error";
+                return;
+            }
+            
+            // Envoyer les données au serveur
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    messageDiv.textContent = data.message;
+                    messageDiv.className = "login-message success";
+                    
+                    // Redirection vers le tableau de bord après 1 seconde
+                    setTimeout(() => {
+                        window.location.href = data.redirect;
+                    }, 1000);
+                } else {
+                    messageDiv.textContent = data.message;
+                    messageDiv.className = "login-message error";
+                }
+            } catch (error) {
+                messageDiv.textContent = "Erreur de connexion au serveur.";
+                messageDiv.className = "login-message error";
+                console.error('Error:', error);
+            }
+        });
+        
+        // Vérifier si l'utilisateur est déjà connecté
+        async function checkSession() {
+            try {
+                const response = await fetch('/api/session');
+                const data = await response.json();
+                
+                if (data.authenticated) {
+                    // L'utilisateur est déjà connecté, rediriger vers le dashboard
+                    window.location.href = '/dashboard.html';
+                }
+            } catch (error) {
+                console.error('Session check error:', error);
+            }
+        }
+        
+        // Vérifier la session au chargement
+        document.addEventListener('DOMContentLoaded', checkSession);
+    </script>
+</body>
+</html>
